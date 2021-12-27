@@ -25,6 +25,32 @@ sysInfo getSystemData::getSysInfo()
     return *info;
 }
 
+sysInfo getSystemData::getSysInfoWithCmd()
+{
+    QThread::sleep(1);
+    QProcess process;
+    process.setWorkingDirectory("C:/Windows/System32");
+    QString PROGRAM_NAME = "winsat features -xml test.xml";
+    process.start(PROGRAM_NAME);
+
+    if (!process.waitForStarted(-1))
+    {
+        return {};
+    }
+
+    if (!process.waitForFinished(-1))
+    {
+        return {};
+    }
+
+    auto data = process.readAllStandardOutput();
+    data.append(process.readAllStandardError());
+    QString decodeData(QTextCodec::codecForName("IBM866")->toUnicode(data));
+    return {0};
+}
+
+
+
 QString getSystemData::getNamePC()
 {
     CHAR compName[100];

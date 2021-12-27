@@ -6,6 +6,10 @@
 #include <QSysInfo>
 #include <sysinfoapi.h>
 #include <windows.h>
+#include <QProcess>
+#include <QThread>
+#include <QTextCodec>
+#include <QFile>
 
 struct sysInfo{
     QString PCName;
@@ -21,6 +25,7 @@ class getSystemData
 public:
     getSystemData();
     sysInfo getSysInfo();
+    sysInfo getSysInfoWithCmd();
 
 private:
     QString getNamePC();

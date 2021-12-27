@@ -5,12 +5,12 @@
 
 int main(int argc, char *argv[])
 {
-    ConsoleInterface *ci = new ConsoleInterface(argc, argv);
-
     getSystemData data;
     sysInfo assInfo;
-
+    assInfo = data.getSysInfoWithCmd();
     data.getSysInfo();
+    ConsoleInterface *ci = new ConsoleInterface(argc, argv);
+
 
     int err = ci->parse_parameters();
     return err;
